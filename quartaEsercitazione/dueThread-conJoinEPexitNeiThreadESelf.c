@@ -11,7 +11,7 @@ void *PrintHello(void *id)
    ptr = (int *) malloc( sizeof(int));
    if (ptr == NULL)
    {
-        printf("Problemi con l'allocazione di ptr\n");
+        perror("Problemi con l'allocazione di ptr\n");
         exit(3);
    }
 
