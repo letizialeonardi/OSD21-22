@@ -12,7 +12,7 @@ void *PrintHello(void *id)
    if (ptr == NULL)
    {
         perror("Problemi con l'allocazione di ptr\n");
-        exit(3);
+        exit(-1);
    }
 
    printf("Thread%d partito: Hello World! Ho come identificatore %lu\n", *pi, pthread_self());
@@ -51,6 +51,7 @@ int main ()
    	{
 		sprintf(error,"SONO IL MAIN E CI SONO STATI PROBLEMI DELLA CREAZIONE DEL thread %d-esimo\n", taskids[i]);
 		perror(error);
+        	exit(3);
     	}
         printf("SONO IL MAIN e ho creato il Pthread %i-esimo con id=%lu\n", i, thread[i]);
     }
@@ -61,7 +62,6 @@ int main ()
         pthread_join(thread[i], (void**) & p);
         ris= *p;
         printf("Pthread %d-esimo restituisce %d\n", i, ris);
-        free(p);
    }
 
    exit(0);

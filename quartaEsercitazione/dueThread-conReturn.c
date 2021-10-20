@@ -39,6 +39,7 @@ int main ()
    	{
 		sprintf(error,"SONO IL MAIN E CI SONO STATI PROBLEMI DELLA CREAZIONE DEL thread %d-esimo\n", taskids[i]);
 		perror(error);
+        	exit(3);
     	}
     }
     return 0;
