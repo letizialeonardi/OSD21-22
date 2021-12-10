@@ -73,7 +73,7 @@ void *eseguiLettura(void *id)
    ptr = (int *) malloc( sizeof(int));
    if (ptr == NULL)
    {
-        printf("Problemi con l'allocazione di ptr\n");
+        perror("Problemi con l'allocazione di ptr\n");
         exit(-1);
    }
 
@@ -95,7 +95,7 @@ void *eseguiScrittura(void *id)
    ptr = (int *) malloc( sizeof(int));
    if (ptr == NULL)
    {
-        printf("Problemi con l'allocazione di ptr\n");
+        perror("Problemi con l'allocazione di ptr\n");
         exit(-1);
    }
 
@@ -116,11 +116,13 @@ int main (int argc, char **argv)
    int i;
    int *p;
    int NUM_THREADS;
+   char error[250];
 
    /* Controllo sul numero di parametri */
    if (argc != 2) /* Deve essere passato esattamente un parametro */
    {
-   	printf("Errore nel numero dei parametri %d\n", argc-1);
+        sprintf(error, "Errore nel numero dei parametri %d\n", argc-1);
+        perror(error);
         exit(1);
    }
 
@@ -128,20 +130,21 @@ int main (int argc, char **argv)
    NUM_THREADS = atoi(argv[1]);
    if (NUM_THREADS <= 0 || NUM_THREADS % 4 != 0) 
    {
-   	printf("Errore: Il primo parametro non e' un numero strettamente maggiore di 0 e non e' divisibile per 4, infatti e' %d\n", NUM_THREADS);
+   	sprintf(error, "Errore: Il primo parametro non e' un numero strettamente maggiore di 0 e non e' divisibile per 4, infatti e' %d\n", NUM_THREADS);
+	perror(error);
         exit(2);
    }
 
    thread=(pthread_t *) malloc(NUM_THREADS * sizeof(pthread_t));
    if (thread == NULL)
    {
-        printf("Problemi con l'allocazione dell'array thread\n");
+        perror("Problemi con l'allocazione dell'array thread\n");
         exit(3);
    }
    taskids = (int *) malloc(NUM_THREADS * sizeof(int));
    if (taskids == NULL)
    {
-        printf("Problemi con l'allocazione dell'array taskids\n");
+        perror("Problemi con l'allocazione dell'array taskids\n");
         exit(4);
    }
 
@@ -151,7 +154,11 @@ int main (int argc, char **argv)
         taskids[i] = i;
    	printf("Sto per creare il thread LETTORE %d-esimo\n", taskids[i]);
         if (pthread_create(&thread[i], NULL, eseguiLettura, (void *) (&taskids[i])) != 0)
-                printf("SONO IL MAIN E CI SONO STATI PROBLEMI NELLA CREAZIONE DEL thread %d-esimo\n", taskids[i]);
+        {
+                sprintf(error,"SONO IL MAIN E CI SONO STATI PROBLEMI NELLA CREAZIONE DEL thread LETTORE %d-esimo\n", taskids[i]);
+                perror(error);
+                exit(5);
+        }
 	printf("SONO IL MAIN e ho creato il Pthread %i-esimo con id=%lu\n", i, thread[i]);
    }
 
@@ -160,7 +167,11 @@ int main (int argc, char **argv)
         taskids[i] = i;
    	printf("Sto per creare il thread SCRITTORE %d-esimo\n", taskids[i]);
         if (pthread_create(&thread[i], NULL, eseguiScrittura, (void *) (&taskids[i])) != 0)
-                printf("SONO IL MAIN E CI SONO STATI PROBLEMI NELLA CREAZIONE DEL thread %d-esimo\n", taskids[i]);
+        {
+                sprintf(error,"SONO IL MAIN E CI SONO STATI PROBLEMI NELLA CREAZIONE DEL thread SCRITTORE %d-esimo\n", taskids[i]);
+                perror(error);
+                exit(6);
+        }
 	printf("SONO IL MAIN e ho creato il Pthread %i-esimo con id=%lu\n", i, thread[i]);
    }
 
@@ -169,7 +180,11 @@ int main (int argc, char **argv)
         taskids[i] = i;
    	printf("Sto per creare il thread LETTORE %d-esimo (seconda passata)\n", taskids[i]);
         if (pthread_create(&thread[i], NULL, eseguiLettura, (void *) (&taskids[i])) != 0)
-                printf("SONO IL MAIN E CI SONO STATI PROBLEMI NELLA CREAZIONE DEL thread %d-esimo\n", taskids[i]);
+        {
+                sprintf(error,"SONO IL MAIN E CI SONO STATI PROBLEMI NELLA CREAZIONE DEL thread LETTORE %d-esimo\n", taskids[i]);
+                perror(error);
+                exit(7);
+        }
 	printf("SONO IL MAIN e ho creato il Pthread %i-esimo con id=%lu\n", i, thread[i]);
    }
 
@@ -178,7 +193,11 @@ int main (int argc, char **argv)
         taskids[i] = i;
    	printf("Sto per creare il thread SCRITTORE %d-esimo (seconda passata)\n", taskids[i]);
         if (pthread_create(&thread[i], NULL, eseguiScrittura, (void *) (&taskids[i])) != 0)
-                printf("SONO IL MAIN E CI SONO STATI PROBLEMI NELLA CREAZIONE DEL thread %d-esimo\n", taskids[i]);
+        {
+                sprintf(error,"SONO IL MAIN E CI SONO STATI PROBLEMI NELLA CREAZIONE DEL thread SCRITTORE %d-esimo\n", taskids[i]);
+                perror(error);
+                exit(8);
+        }
 	printf("SONO IL MAIN e ho creato il Pthread %i-esimo con id=%lu\n", i, thread[i]);
    }
    for (i=0; i < NUM_THREADS; i++)
@@ -191,4 +210,3 @@ int main (int argc, char **argv)
  
    exit(0);
 }
-
