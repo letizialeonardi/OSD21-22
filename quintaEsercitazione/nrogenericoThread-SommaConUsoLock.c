@@ -86,7 +86,7 @@ int main (int argc, char **argv)
    	printf("Sto per creare il thread %d-esimo\n", taskids[i]);
         if (pthread_create(&thread[i], NULL, Incremento, (void *) (&taskids[i])) != 0)  /* N.B. si deve passare il nome giusto della START_ROUTINE */
        	{
-                sprintf(error,"SONO IL MAIN E CI SONO STATI PROBLEMI DELLA CREAZIONE DEL thread %d-esimo\n", taskids[i]);
+                sprintf(error,"SONO IL MAIN E CI SONO STATI PROBLEMI NELLA CREAZIONE DEL thread %d-esimo\n", taskids[i]);
                 perror(error);
                 exit(5);
         }
