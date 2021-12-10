@@ -83,7 +83,7 @@ int main ()
         write(1, stampa, strlen(stampa));
 	if (pthread_create(&thread[i], NULL, eseguiFilosofo, (void *) (&taskids[i])) != 0)
  	{
-                sprintf(error,"SONO IL MAIN E CI SONO STATI PROBLEMI DELLA CREA IONE DEL thread %d-esimo\n", taskids[i]);
+                sprintf(error,"SONO IL MAIN E CI SONO STATI PROBLEMI NELLA CREA IONE DEL thread %d-esimo\n", taskids[i]);
                 perror(error);
                 exit(3);
         }
