@@ -107,7 +107,7 @@ int main (int argc, char **argv)
    /* prima di creare i thread, andiamo ad inizializzare il semaforo RISORSE al valore m */
    if (sem_init(&RISORSE, 0, m) != 0)
    {
-        printf("Problemi con l'inizializzazione del semaforo RISORSE\n");
+        perror("Problemi con l'inizializzazione del semaforo RISORSE\n");
         exit(5);
    }
 
