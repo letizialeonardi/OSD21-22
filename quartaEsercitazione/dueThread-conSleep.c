@@ -39,7 +39,7 @@ int main ()
    	printf("Sto per creare il thread %d-esimo\n", taskids[i]);
    	if (pthread_create(&thread[i], NULL, PrintHello, (void *) (&taskids[i])) != 0)
    	{
-		sprintf(error,"SONO IL MAIN E CI SONO STATI PROBLEMI DELLA CREAZIONE DEL thread %d-esimo\n", taskids[i]);
+		sprintf(error,"SONO IL MAIN E CI SONO STATI PROBLEMI NELLA CREAZIONE DEL thread %d-esimo\n", taskids[i]);
 		perror(error);
         	exit(3);
     	}
