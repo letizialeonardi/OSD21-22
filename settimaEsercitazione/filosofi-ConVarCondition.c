@@ -56,7 +56,7 @@ void *eseguiFilosofo(void *id)
    ptr = (int *) malloc( sizeof(int));
    if (ptr == NULL)
    {
-        printf("Problemi con l'allocazione dell'array ptr\n");
+        perror("Problemi con l'allocazione dell'array ptr\n");
         exit(-1);
    }
    
@@ -82,18 +82,19 @@ int main ()
    int i;
    int *p;
    int NUM_THREADS = 5;
+   char error[250];
 
    thread=(pthread_t *) malloc(NUM_THREADS * sizeof(pthread_t));
    if (thread == NULL)
    {
-        printf("Problemi con l'allocazione dell'array thread\n");
-        exit(3);
+        perror("Problemi con l'allocazione dell'array thread\n");
+        exit(1);
    }
    taskids = (int *) malloc(NUM_THREADS * sizeof(int));
    if (taskids == NULL)
    {
-        printf("Problemi con l'allocazione dell'array taskids\n");
-        exit(4);
+        perror("Problemi con l'allocazione dell'array taskids\n");
+        exit(2);
    }
 
    /* creazione dei thread filosofi */
@@ -102,7 +103,11 @@ int main ()
         taskids[i] = i;
    	printf("Sto per creare il thread %d-esimo\n", taskids[i]);
 	if (pthread_create(&thread[i], NULL, eseguiFilosofo, (void *) (&taskids[i])) != 0)
-                printf("SONO IL MAIN E CI SONO STATI PROBLEMI DELLA CREAZIONE DEL thread %d-esimo\n", taskids[i]);
+        {
+                sprintf(error,"SONO IL MAIN E CI SONO STATI PROBLEMI NELLA CREAZIONE DEL thread FILOSOFO %d-esimo\n", taskids[i]);
+                perror(error);
+                exit(3);
+        }
 	printf("SONO IL MAIN e ho creato il Pthread %i-esimo con id=%lu\n", i, thread[i]);
    }
 
@@ -116,4 +121,3 @@ int main ()
 
    exit(0);
 }
-

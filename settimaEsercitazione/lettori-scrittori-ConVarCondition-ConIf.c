@@ -151,7 +151,7 @@ int main (int argc, char **argv)
         taskids[i] = i;
    	printf("Sto per creare il thread LETTORE %d-esimo\n", taskids[i]);
         if (pthread_create(&thread[i], NULL, eseguiLettura, (void *) (&taskids[i])) != 0)
-                printf("SONO IL MAIN E CI SONO STATI PROBLEMI DELLA CREAZIONE DEL thread %d-esimo\n", taskids[i]);
+                printf("SONO IL MAIN E CI SONO STATI PROBLEMI NELLA CREAZIONE DEL thread %d-esimo\n", taskids[i]);
 	printf("SONO IL MAIN e ho creato il Pthread %i-esimo con id=%lu\n", i, thread[i]);
    }
 
@@ -160,7 +160,7 @@ int main (int argc, char **argv)
         taskids[i] = i;
    	printf("Sto per creare il thread SCRITTORE %d-esimo\n", taskids[i]);
         if (pthread_create(&thread[i], NULL, eseguiScrittura, (void *) (&taskids[i])) != 0)
-                printf("SONO IL MAIN E CI SONO STATI PROBLEMI DELLA CREAZIONE DEL thread %d-esimo\n", taskids[i]);
+                printf("SONO IL MAIN E CI SONO STATI PROBLEMI NELLA CREAZIONE DEL thread %d-esimo\n", taskids[i]);
 	printf("SONO IL MAIN e ho creato il Pthread %i-esimo con id=%lu\n", i, thread[i]);
    }
 
@@ -169,7 +169,7 @@ int main (int argc, char **argv)
         taskids[i] = i;
    	printf("Sto per creare il thread LETTORE %d-esimo (seconda passata)\n", taskids[i]);
         if (pthread_create(&thread[i], NULL, eseguiLettura, (void *) (&taskids[i])) != 0)
-                printf("SONO IL MAIN E CI SONO STATI PROBLEMI DELLA CREAZIONE DEL thread %d-esimo\n", taskids[i]);
+                printf("SONO IL MAIN E CI SONO STATI PROBLEMI NELLA CREAZIONE DEL thread %d-esimo\n", taskids[i]);
 	printf("SONO IL MAIN e ho creato il Pthread %i-esimo con id=%lu\n", i, thread[i]);
    }
 
@@ -178,7 +178,7 @@ int main (int argc, char **argv)
         taskids[i] = i;
    	printf("Sto per creare il thread SCRITTORE %d-esimo (seconda passata)\n", taskids[i]);
         if (pthread_create(&thread[i], NULL, eseguiScrittura, (void *) (&taskids[i])) != 0)
-                printf("SONO IL MAIN E CI SONO STATI PROBLEMI DELLA CREAZIONE DEL thread %d-esimo\n", taskids[i]);
+                printf("SONO IL MAIN E CI SONO STATI PROBLEMI NELLA CREAZIONE DEL thread %d-esimo\n", taskids[i]);
 	printf("SONO IL MAIN e ho creato il Pthread %i-esimo con id=%lu\n", i, thread[i]);
    }
    for (i=0; i < NUM_THREADS; i++)
