@@ -125,7 +125,7 @@ int main (int argc, char **argv)
    /* prima di creare i thread, andiamo ad inizializzare il semaforo Oxy a 2 */
    if (sem_init(&Oxy, 0, 2) != 0)
    {
-        printf("Problemi con l'inizializzazione del semaforo Oxy\n");
+        perror("Problemi con l'inizializzazione del semaforo Oxy\n");
         exit(5);
    }
 
