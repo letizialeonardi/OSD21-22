@@ -147,7 +147,7 @@ lore 0 */
                 printf("Sto per creare il thread CUOCO %d-esimo\n", taskids[i]);
                 if (pthread_create(&thread[i], NULL, eseguiCuoco, (void *) (&taskids[i])) != 0)
                 {
-                        sprintf(error,"SONO IL MAIN E CI SONO STATI PROBLEMI DELLA CREAZIONE DEL thread CUOCO %d-esimo\n", taskids[i]);
+                        sprintf(error,"SONO IL MAIN E CI SONO STATI PROBLEMI NELLA CREAZIONE DEL thread CUOCO %d-esimo\n", taskids[i]);
                         perror(error);
                         exit(7);
                 }
@@ -157,7 +157,7 @@ lore 0 */
                 printf("Sto per creare il thread CANNIBALE %d-esimo\n", taskids[i]);
                 if (pthread_create(&thread[i], NULL, eseguiCannibale, (void *) (&taskids[i])) != 0)
                 {
-                        sprintf(error,"SONO IL MAIN E CI SONO STATI PROBLEMI DELLA CREAZIONE DEL thread CANNIBALE %d-esimo\n", taskids[i]);
+                        sprintf(error,"SONO IL MAIN E CI SONO STATI PROBLEMI NELLA CREAZIONE DEL thread CANNIBALE %d-esimo\n", taskids[i]);
                         perror(error);
                         exit(8);
                 }
