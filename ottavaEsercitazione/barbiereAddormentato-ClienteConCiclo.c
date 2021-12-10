@@ -162,7 +162,7 @@ int main (int argc, char **argv)
    		printf("Sto per creare il thread BARBIERE %d-esimo\n", taskids[i]);
         	if (pthread_create(&thread[i], NULL, eseguiBarbiere, (void *) (&taskids[i])) != 0)
                 {
-                        sprintf(error,"SONO IL MAIN E CI SONO STATI PROBLEMI DELLA CREAZIONE DEL thread BARBIERE %d-esimo\n", taskids[i]);
+                        sprintf(error,"SONO IL MAIN E CI SONO STATI PROBLEMI NELLA CREAZIONE DEL thread BARBIERE %d-esimo\n", taskids[i]);
                         perror(error);
                         exit(7);
                 }
@@ -172,7 +172,7 @@ int main (int argc, char **argv)
    		printf("Sto per creare il thread CLIENTE %d-esimo\n", taskids[i]);
         	if (pthread_create(&thread[i], NULL, eseguiCliente, (void *) (&taskids[i])) != 0)
                 {
-                        sprintf(error,"SONO IL MAIN E CI SONO STATI PROBLEMI DELLA CREAZIONE DEL thread CLIENTE %d-esimo\n", taskids[i]);
+                        sprintf(error,"SONO IL MAIN E CI SONO STATI PROBLEMI NELLA CREAZIONE DEL thread CLIENTE %d-esimo\n", taskids[i]);
                         perror(error);
                         exit(8);
                 }

@@ -158,7 +158,7 @@ int main (int argc, char **argv)
    	printf("Sto per creare il thread PRODUTTORE %d-esimo\n", taskids[i]);
         if (pthread_create(&thread[i], NULL, eseguiProduttore, (void *) (&taskids[i])) != 0)
         {
-                sprintf(error,"SONO IL MAIN E CI SONO STATI PROBLEMI DELLA CREAZIONE DEL thread PRODUTTORE %d-esimo\n", taskids[i]);
+                sprintf(error,"SONO IL MAIN E CI SONO STATI PROBLEMI NELLA CREAZIONE DEL thread PRODUTTORE %d-esimo\n", taskids[i]);
                 perror(error);
                 exit(5);
         }
@@ -171,7 +171,7 @@ int main (int argc, char **argv)
    	printf("Sto per creare il thread CONSUMATORE %d-esimo\n", taskids[i]);
         if (pthread_create(&thread[i], NULL, eseguiConsumatore, (void *) (&taskids[i])) != 0)
         {
-                sprintf(error,"SONO IL MAIN E CI SONO STATI PROBLEMI DELLA CREAZIONE DEL thread CONSUMATORE %d-esimo\n", taskids[i]);
+                sprintf(error,"SONO IL MAIN E CI SONO STATI PROBLEMI NELLA CREAZIONE DEL thread CONSUMATORE %d-esimo\n", taskids[i]);
                 perror(error);
                 exit(6);
         }

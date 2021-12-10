@@ -126,7 +126,7 @@ int main (int argc, char **argv)
    		printf("Sto per creare il thread GENERATORE DI IDROGENO %d-esimo\n", taskids[i]);
         	if (pthread_create(&thread[i], NULL, eseguiIdrogeno, (void *) (&taskids[i])) != 0)
                 {
-                        sprintf(error,"SONO IL MAIN E CI SONO STATI PROBLEMI DELLA CREAZIONE DEL thread GENERATORE DI IDROGENO  %d-esimo\n", taskids[i]);
+                        sprintf(error,"SONO IL MAIN E CI SONO STATI PROBLEMI NELLA CREAZIONE DEL thread GENERATORE DI IDROGENO  %d-esimo\n", taskids[i]);
                         perror(error);
                         exit(6);
                 }
@@ -136,7 +136,7 @@ int main (int argc, char **argv)
                 printf("Sto per creare il thread GENERATORE DI OSSIGENO %d-esimo\n", taskids[i]);
                 if (pthread_create(&thread[i], NULL, eseguiOssigeno, (void *) (&taskids[i])) != 0)
                 {
-                        sprintf(error,"SONO IL MAIN E CI SONO STATI PROBLEMI DELLA CREAZIONE DEL thread GENERATORE DI OSSIGENO  %d-esimo\n", taskids[i]);
+                        sprintf(error,"SONO IL MAIN E CI SONO STATI PROBLEMI NELLA CREAZIONE DEL thread GENERATORE DI OSSIGENO  %d-esimo\n", taskids[i]);
                         perror(error);
                         exit(7);
                 }
